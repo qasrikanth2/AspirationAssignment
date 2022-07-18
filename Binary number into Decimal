@@ -1,0 +1,30 @@
+public class BinaryToDecimal {
+
+public static void main(String[] args) {
+
+int num=1010;
+int decValue=0;
+int base=1;
+
+while(num!=0)
+{
+int lastDigit=num%10;
+num=num/10; //remaining digits in number 
+decValue=decValue+ (lastDigit*base); //as 2^0 is 1 
+base=base*2; 
+
+}
+
+System.out.println("Decimal value is "+ decValue);
+
+}
+}
+
+/*
+Ans:
+1st  - Fix bug with concurrency in server code
+2nd - Fix JavaScript bug in front-end code
+3rd - Upgrade the database
+4th - Build a new web app interface
+5th - Fix CSS display issue in front-end code
+*/
