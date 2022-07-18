@@ -1,0 +1,101 @@
+//Dictionary WordList
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Queue;
+
+public class Ladder {
+
+static String expWord;
+static int len;
+Ladder(String str, int len)
+{
+this.expWord=str;
+this.len=len;
+}
+
+public static void main(String[] args) {
+
+String start="TOON";
+String target="PLEA";
+List<String> wordsList= new ArrayList<String>();
+wordsList.add("POON");
+wordsList.add("PLEE");
+wordsList.add("SAME");
+wordsList.add("POIE");
+wordsList.add("PLEA");
+wordsList.add("PLIE");
+wordsList.add("POIN");
+
+/*
+String start="ABCV";
+String target="EBAD";
+List<String> wordsList= new ArrayList<String>();
+wordsList.add("ABCD");
+wordsList.add("EBAD");
+wordsList.add("EBCD");
+wordsList.add("XYZA");
+*/
+
+
+
+if(start.length()==0 || target.length()==0 || wordsList.size()==0)
+{
+System.out.println("No trsanformation identified");
+}
+
+Queue<Ladder> q=new  LinkedList<>();
+q.add(new Ladder(start,1));
+while(!q.isEmpty())
+{
+Ladder val=q.poll();
+ListIterator<String> it=wordsList.listIterator();
+while(it.hasNext())
+{
+String word=it.next();
+System.out.println(word);
+if(isMatching(val.expWord,word))
+{
+it.remove();
+try {
+try {
+System.out.println(word +"       "+ Ladder.len);
+q.add(new Ladder(word,Ladder.len+1));
+if(word.equals(target))
+{
+System.out.println("Values are matching and length is "+Ladder.len);
+break;
+}
+} catch (Exception e) {
+// TODO Auto-generated catch block
+e.printStackTrace();
+}
+} catch (Exception e) {
+// TODO Auto-generated catch block
+e.printStackTrace();
+}
+}
+}
+
+}
+
+
+}
+
+public static boolean isMatching(String val, String word)
+{
+int count =0;
+for(int i=0;i<val.length();i++)
+{
+if(val.charAt(i)!=word.charAt(i))
+count++;
+if(count>1)
+return false;
+}
+
+return count>1?false:true; 
+}
+}
